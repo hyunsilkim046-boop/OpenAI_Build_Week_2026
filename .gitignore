@@ -6,6 +6,9 @@ dist/
 coverage/
 playwright-report/
 test-results/
+*.tsbuildinfo
+__pycache__/
+*.py[cod]
 
 # Secrets and deployment metadata
 .env
@@ -23,7 +26,12 @@ submission/private/
 **/*주민등록*
 
 # Local artifacts
+.playwright-cli/
 *.log
 *.local.*
 .DS_Store
 Thumbs.db
+
+# Keep the verified final demo and captions in Git; ignore reproducible render
+# intermediates (screens, TTS segments, clips, and verification frames).
+submission/video/work/

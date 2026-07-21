@@ -1,0 +1,74 @@
+[
+  {
+    "id": "00_intro",
+    "kind": "intro",
+    "eyebrow": "OPENAI BUILD WEEK 2026  /  EDUCATION",
+    "headline": "The answer is right.\nThe reason is not.",
+    "callout": "DIAGNOSE THE REASONING, NOT THE LEARNER",
+    "narration": "Teachers often see a correct answer and move on. But a correct answer can hide the wrong model. WhyRight is a ninety-second diagnostic game built for OpenAI Build Week 2026. The goal is simple: diagnose the reasoning, not the learner."
+  },
+  {
+    "id": "01_choose",
+    "kind": "screenshot",
+    "source": "submission/video/work/screens/01_cases.png",
+    "eyebrow": "01  /  PICK A CASE",
+    "callout": "TWO SYNTHETIC CASES. ZERO STUDENT DATA.",
+    "narration": "Choose one of two synthetic middle-school cases: mathematics or science. Each learner begins with a correct answer, but carries one fixed misconception for the entire round. There is no login, and no real student data is collected."
+  },
+  {
+    "id": "02_case",
+    "kind": "screenshot",
+    "source": "submission/video/work/screens/02_round_open.png",
+    "eyebrow": "02  /  FORM A WORKING SET",
+    "callout": "FOUR PLAUSIBLE BELIEFS. THREE PROBES.",
+    "narration": "In The Shrinking Product, the learner correctly says three times five is fifteen. Four explanations remain plausible. The teacher gets up to three free-form probes, and must decide which beliefs are still consistent with the transcript."
+  },
+  {
+    "id": "03_probe",
+    "kind": "screenshot",
+    "source": "submission/video/work/screens/03_probe_typed.png",
+    "eyebrow": "03  /  ASK A HINGE QUESTION",
+    "callout": "MAKE COMPETING BELIEFS PREDICT DIFFERENT ANSWERS.",
+    "narration": "Here is the hinge question: Without calculating first, will one-half times eight be greater than or less than eight? Why? This transfer case forces the hidden rule to make a prediction. It distinguishes genuine multiplicative reasoning from the belief that multiplication must always make quantities larger."
+  },
+  {
+    "id": "04_live",
+    "kind": "screenshot",
+    "source": "submission/video/work/screens/04_gpt_response.png",
+    "eyebrow": "04  /  LIVE GPT-5.6 RESPONSE",
+    "callout": "I THINK IT'LL BE GREATER... MULTIPLYING SHOULD MAKE IT BIGGER.",
+    "narration": "The response shown here came from a live GPT-5.6 call: I think it'll be greater than eight, because multiplying a positive number should make it bigger. The model stays in the role of a fictional learner. It never sees the answer key, and it never changes the hidden belief."
+  },
+  {
+    "id": "05_diagnose",
+    "kind": "screenshot",
+    "source": "submission/video/work/screens/05_h1_only.png",
+    "eyebrow": "05  /  UPDATE, THEN DIAGNOSE",
+    "callout": "H2, H3, H4 OUT. H1 REMAINS.",
+    "narration": "Now the teacher updates the working set. H two, H three, and H four are eliminated, while H one remains. Then the teacher locks the diagnosis: multiplication always makes quantities larger. This reasoning trace is visible, inspectable, and driven by evidence."
+  },
+  {
+    "id": "06_score",
+    "kind": "screenshot",
+    "source": "submission/video/work/screens/06_result.png",
+    "eyebrow": "06  /  FIXED-RULE SCORE",
+    "callout": "100 / 100  =  70 DIAGNOSIS + 10 CORRECT HYPOTHESIS RETAINED + 20 REDUCTION",
+    "narration": "The result is one hundred out of one hundred. But GPT did not award a single point. Seventy points come from the exact diagnosis, ten for keeping the correct hypothesis, and twenty for candidate reduction. Fixed rules, fixed key, no AI vibe-based scoring."
+  },
+  {
+    "id": "07_architecture",
+    "kind": "architecture",
+    "eyebrow": "BUILD-TIME  /  RUNTIME  /  TRUST BOUNDARY",
+    "headline": "Codex builds. GPT-5.6 roleplays.",
+    "callout": "GENERATION IS NOT JUDGMENT",
+    "narration": "Codex helped shape the concept, then built the Next.js architecture, implementation, tests, adversarial reviews, and this submission package. At runtime, GPT-5.6 generates only a fictional learner reply and response mode. Encrypted state and deterministic scoring keep generation separate from judgment. Twenty-one tests pass; eight of eight fixed probes passed automatic signal checks, with manual review still required."
+  },
+  {
+    "id": "08_outro",
+    "kind": "outro",
+    "eyebrow": "WHYRIGHT  /  EDUCATION",
+    "headline": "Ask one question deeper.",
+    "callout": "THE ANSWER WAS RIGHT. NOW WE FOUND THE WHY.",
+    "narration": "WhyRight turns a chat demo into an inspectable practice loop: ask a question that makes competing beliefs predict different answers. Two cases today, a reusable diagnostic lab tomorrow. The answer was right. Now we found the why."
+  }
+]
