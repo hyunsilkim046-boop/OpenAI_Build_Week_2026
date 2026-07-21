@@ -24,8 +24,7 @@ here.
 1. **Completed:** production deployment and both live scenario flows at
    https://whyright-build-week-2026.vercel.app/.
 2. **Completed:** Public YouTube upload and signed-out stream/decode check at
-   https://youtu.be/9Qos6J0MOuI. The supplied SRT is not yet attached as a
-   manual subtitle track.
+   https://youtu.be/9Qos6J0MOuI.
 3. **Completed:** Devpost submission is public at
    https://devpost.com/software/whyright.
 4. **Completed privately:** the Codex feedback Session ID and entrant
@@ -34,3 +33,15 @@ here.
 
 No API key, Vercel token, entrant identity, or Codex feedback ID belongs in
 this public folder.
+
+## Remaining public-page cleanup
+
+- YouTube still needs the current description from
+  `video/YOUTUBE_UPLOAD_COPY.md`; the public description retains the
+  `[LIVE_DEMO_URL]` placeholder, the recording-time 21-test wording, and the
+  older privacy sentence.
+- Attach `video/WhyRight_Build_Week_2026_Demo.en.srt` as the manual English
+  subtitle track. Automatic captions exist, but no uploaded subtitle track is
+  currently published.
+- In the Devpost gallery, remove the trailing triple backticks from the caption
+  “A real GPT-5.6 learner response to a diagnostic fraction hinge question.”
