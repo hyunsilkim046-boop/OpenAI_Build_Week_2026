@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { GameScreen } from "@/components/game-screen";
 import { ResultsScreen } from "@/components/results-screen";
 import { StartScreen } from "@/components/start-screen";
@@ -59,6 +59,8 @@ async function apiRequest<T>(url: string, init?: RequestInit): Promise<T> {
 }
 
 export function WhyRightExperience() {
+  const requestEpochRef = useRef(0);
+  const activeRequestRef = useRef<AbortController | null>(null);
   const [phase, setPhase] = useState<ExperiencePhase>("start");
   const [scenarios, setScenarios] = useState<ScenarioSummary[]>([]);
   const [selectedScenarioId, setSelectedScenarioId] = useState("");
@@ -82,6 +84,30 @@ export function WhyRightExperience() {
   const [startError, setStartError] = useState("");
   const [roundError, setRoundError] = useState("");
   const [questionFocusRequest, setQuestionFocusRequest] = useState(0);
+
+  function beginRequest() {
+    if (activeRequestRef.current) return null;
+
+    const controller = new AbortController();
+    const epoch = requestEpochRef.current + 1;
+    requestEpochRef.current = epoch;
+    activeRequestRef.current = controller;
+    return { controller, epoch };
+  }
+
+  function isCurrentRequest(epoch: number, controller: AbortController) {
+    return (
+      requestEpochRef.current === epoch &&
+      activeRequestRef.current === controller &&
+      !controller.signal.aborted
+    );
+  }
+
+  const invalidateActiveRequest = useCallback(() => {
+    requestEpochRef.current += 1;
+    activeRequestRef.current?.abort();
+    activeRequestRef.current = null;
+  }, []);
 
   const loadScenarios = useCallback(async () => {
     setLoadingScenarios(true);
@@ -120,6 +146,13 @@ export function WhyRightExperience() {
     };
   }, []);
 
+  useEffect(
+    () => () => {
+      invalidateActiveRequest();
+    },
+    [invalidateActiveRequest],
+  );
+
   useEffect(() => {
     if (phase !== "round" || roundEndsAt <= 0) return;
 
@@ -135,13 +168,20 @@ export function WhyRightExperience() {
 
   async function startRound() {
     if (!selectedScenarioId) return;
+    const request = beginRequest();
+    if (!request) return;
+
+    const { controller, epoch } = request;
     setStarting(true);
     setStartError("");
     try {
       const data = await apiRequest<SessionStartResponse>("/api/session", {
         method: "POST",
         body: JSON.stringify({ scenarioId: selectedScenarioId }),
+        signal: controller.signal,
       });
+      if (!isCurrentRequest(epoch, controller)) return;
+
       setActiveScenario(data.scenario);
       setSessionToken(data.sessionToken);
       setTranscript([{ id: "opening", role: "student", text: data.initialMessage.text }]);
@@ -162,15 +202,23 @@ export function WhyRightExperience() {
       setPhase("round");
       window.scrollTo({ top: 0, behavior: "auto" });
     } catch (requestError) {
+      if (!isCurrentRequest(epoch, controller)) return;
       setStartError(readableApiError(requestError));
     } finally {
-      setStarting(false);
+      if (isCurrentRequest(epoch, controller)) {
+        activeRequestRef.current = null;
+        setStarting(false);
+      }
     }
   }
 
   async function submitQuestion() {
     const trimmedQuestion = question.trim();
     if (!trimmedQuestion || waiting || !sessionToken || remainingTurns <= 0) return;
+    const request = beginRequest();
+    if (!request) return;
+
+    const { controller, epoch } = request;
 
     const teacherItem: TranscriptItem = {
       id: `teacher-${transcript.length}-${Date.now()}`,
@@ -190,7 +238,10 @@ export function WhyRightExperience() {
           question: trimmedQuestion,
           plausibleCandidateIds,
         }),
+        signal: controller.signal,
       });
+      if (!isCurrentRequest(epoch, controller)) return;
+
       setSessionToken(data.sessionToken);
       setCommittedCandidateIds(plausibleCandidateIds);
       setTranscript((current) => [
@@ -209,12 +260,16 @@ export function WhyRightExperience() {
         setQuestionFocusRequest((current) => current + 1);
       }
     } catch (requestError) {
+      if (!isCurrentRequest(epoch, controller)) return;
       setTranscript((current) => current.filter((item) => item.id !== teacherItem.id));
       setQuestion(trimmedQuestion);
       setRoundError(readableApiError(requestError));
       setQuestionFocusRequest((current) => current + 1);
     } finally {
-      setWaiting(false);
+      if (isCurrentRequest(epoch, controller)) {
+        activeRequestRef.current = null;
+        setWaiting(false);
+      }
     }
   }
 
@@ -234,25 +289,37 @@ export function WhyRightExperience() {
   }
 
   async function submitDiagnosis() {
-    if (!diagnosisId || diagnosing || !sessionToken) return;
+    if (!diagnosisId || waiting || diagnosing || !sessionToken) return;
+    const request = beginRequest();
+    if (!request) return;
+
+    const { controller, epoch } = request;
     setDiagnosing(true);
     setRoundError("");
     try {
       const data = await apiRequest<DiagnoseResponse>("/api/diagnose", {
         method: "POST",
         body: JSON.stringify({ sessionToken, diagnosisId, plausibleCandidateIds }),
+        signal: controller.signal,
       });
+      if (!isCurrentRequest(epoch, controller)) return;
+
       setResult(data.result);
       setPhase("results");
       window.scrollTo({ top: 0, behavior: "smooth" });
     } catch (requestError) {
+      if (!isCurrentRequest(epoch, controller)) return;
       setRoundError(readableApiError(requestError));
     } finally {
-      setDiagnosing(false);
+      if (isCurrentRequest(epoch, controller)) {
+        activeRequestRef.current = null;
+        setDiagnosing(false);
+      }
     }
   }
 
   function resetToStart() {
+    invalidateActiveRequest();
     setPhase("start");
     setActiveScenario(null);
     setSessionToken("");
@@ -265,6 +332,9 @@ export function WhyRightExperience() {
     setQuestion("");
     setDiagnosisMode(false);
     setDiagnosisId("");
+    setStarting(false);
+    setWaiting(false);
+    setDiagnosing(false);
     setQuestionFocusRequest(0);
     setRoundEndsAt(0);
     setSecondsLeft(90);
@@ -294,7 +364,7 @@ export function WhyRightExperience() {
         onSubmitQuestion={submitQuestion}
         onToggleCandidate={toggleCandidate}
         onOpenDiagnosis={() => {
-          if (completedProbeCount > 0 || secondsLeft === 0) {
+          if (!waiting && (completedProbeCount > 0 || secondsLeft === 0)) {
             setDiagnosisMode(true);
           }
         }}

@@ -137,7 +137,8 @@ export function StartScreen({
           <div className="honesty-strip" aria-label="Data and model details">
             <span><i aria-hidden="true">G</i> GPT-5.6 live simulation</span>
             <span><i aria-hidden="true">S</i> Synthetic learner</span>
-            <span><i aria-hidden="true">0</i> No student data saved</span>
+            <span><i aria-hidden="true">O</i> Probe text sent to OpenAI</span>
+            <span><i aria-hidden="true">!</i> Do not enter real student information</span>
           </div>
           <div className="start-action">
             <button

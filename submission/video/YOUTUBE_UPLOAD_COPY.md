@@ -21,16 +21,19 @@ implementation, tests, adversarial reviews, and submission package. The app
 uses the OpenAI Responses API, Structured Outputs, and AES-256-GCM authenticated
 session state for OpenAI Build Week 2026, Education track.
 
-Verification: 21 tests pass. Eight of eight fixed probes passed automatic
-signal checks; manual review is still required. These checks cover the fixed
-synthetic cases and are not a claim of general educational validity.
+Verification: the recorded cut shows 21 passing tests; the current repository
+passes 25. Eight of eight fixed probes passed automatic signal checks; manual
+review is still required. These checks cover the fixed synthetic cases and are
+not a claim of general educational validity.
 
 Live demo: https://whyright-build-week-2026.vercel.app/
 Source: https://github.com/hyunsilkim046-boop/OpenAI_Build_Week_2026
 
-All learners and scenarios are synthetic. No real student data is collected.
-The project is a practice prototype, not a student assessment or a claim of
-measured learning impact.
+All learners and scenarios are synthetic. Do not enter real student
+information. Free-form probe text is sent to OpenAI only to generate the live
+fictional reply; Responses API storage is disabled and WhyRight has no app
+database. The project is a practice prototype, not a student assessment or a
+claim of measured learning impact.
 
 Chapters:
 00:00 A right answer can hide a wrong model

@@ -19,16 +19,18 @@ here.
 - `../docs/DEMO_SCRIPT.md` — original shot plan plus produced-cut metadata
 - `../docs/RSI_LOG.md` — three review, fix, and verification cycles
 
-## Morning completion status
+## Final submission status
 
 1. **Completed:** production deployment and both live scenario flows at
    https://whyright-build-week-2026.vercel.app/.
 2. **Completed:** Public YouTube upload and signed-out stream/decode check at
    https://youtu.be/9Qos6J0MOuI. The supplied SRT is not yet attached as a
    manual subtitle track.
-3. Replace the Codex feedback placeholder in Devpost; the Live and YouTube URLs
-   are already resolved in the copy file.
-4. Review required entrant declarations and perform the final Devpost submit.
+3. **Completed:** Devpost submission is public at
+   https://devpost.com/software/whyright.
+4. **Completed privately:** the Codex feedback Session ID and entrant
+   declarations were supplied directly in Devpost and are intentionally omitted
+   from this public repository.
 
 No API key, Vercel token, entrant identity, or Codex feedback ID belongs in
 this public folder.

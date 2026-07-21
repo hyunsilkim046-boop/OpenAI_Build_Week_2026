@@ -54,7 +54,7 @@ export function GameScreen({
   onExit,
 }: GameScreenProps) {
   const noMoreProbes = remainingTurns === 0 || secondsLeft === 0;
-  const canDiagnose = completedProbeCount > 0 || secondsLeft === 0;
+  const canDiagnose = !waiting && (completedProbeCount > 0 || secondsLeft === 0);
   const roundTitleRef = useRef<HTMLHeadingElement>(null);
   const questionRef = useRef<HTMLTextAreaElement>(null);
   const diagnosisDrawerRef = useRef<HTMLDivElement>(null);
@@ -136,7 +136,7 @@ export function GameScreen({
                 <h3 id="diagnosis-title" ref={diagnosisTitleRef} tabIndex={-1}>What belief best explains the learner&apos;s answers?</h3>
                 <p>Select one diagnosis. The fixed answer key—not the model—will score it.</p>
               </div>
-              <fieldset disabled={diagnosing}>
+              <fieldset disabled={waiting || diagnosing}>
                 <legend className="sr-only">Choose your final diagnosis</legend>
                 <div className="diagnosis-options">
                   {scenario.candidates.map((candidate, index) => {
@@ -171,7 +171,7 @@ export function GameScreen({
               </fieldset>
               <div className="diagnosis-actions">
                 {!noMoreProbes ? (
-                  <button type="button" className="secondary-button" onClick={onCloseDiagnosis} disabled={diagnosing}>
+                  <button type="button" className="secondary-button" onClick={onCloseDiagnosis} disabled={waiting || diagnosing}>
                     Ask another probe
                   </button>
                 ) : (
@@ -190,6 +190,7 @@ export function GameScreen({
                   disabled={
                     !diagnosisId ||
                     !plausibleCandidateIds.includes(diagnosisId) ||
+                    waiting ||
                     diagnosing
                   }
                 >
@@ -209,11 +210,14 @@ export function GameScreen({
                       ? "No live reply was collected. A best guess cannot earn candidate-reduction points."
                       : "Your evidence set is ready."}
                   </p>
-                  <button type="button" className="primary-button" onClick={onOpenDiagnosis}>Make diagnosis <span aria-hidden="true">→</span></button>
+                  <button type="button" className="primary-button" onClick={onOpenDiagnosis} disabled={waiting}>Make diagnosis <span aria-hidden="true">→</span></button>
                 </div>
               ) : (
                 <>
-                  <label htmlFor="probe-question">Your next diagnostic question</label>
+                  <label htmlFor="probe-question">
+                    <span>Your next diagnostic question</span>
+                    <small>Synthetic case · Sent to OpenAI · Do not enter real student information</small>
+                  </label>
                   <div className="probe-composer__input">
                     <textarea
                       id="probe-question"

@@ -174,9 +174,12 @@ The authorized product decision record is preserved in
 
 ## Safety, privacy, and limits
 
-- Only fictional learners and synthetic classroom scenarios are used.
-- No login, database, class roster, grade, analytics, or real student record is
-  collected.
+- Only fictional learners and synthetic classroom scenarios are used. Do not
+  enter real student information into a probe.
+- The app has no login, database, class roster, gradebook, or analytics, and it
+  does not persist probe text or student records. Probe text is sent to OpenAI
+  only to generate the live fictional learner reply; Responses API storage is
+  disabled with `store: false`.
 - Sessions are client-held encrypted tokens that expire after 15 minutes.
 - New probes are rejected by the server after the round's 90-second deadline.
 - A bounded per-instance IP limiter slows accidental or low-volume API abuse.
@@ -226,9 +229,10 @@ Development. Do not upload or expose `.env.local`.
 - Primary build environment: **Codex**
 - Submission deadline: **July 22, 2026 at 09:00 KST**
 
-Submission still requires the public repository, a narrated public YouTube
-video under three minutes, a testable deployment, the Codex `/feedback`
-Session ID, and the completed Devpost form.
+Submitted to OpenAI Build Week on July 22, 2026. The public entry is
+**https://devpost.com/software/whyright**, supported by the public repository,
+the narrated YouTube demo, and the testable Vercel deployment above. The Codex
+`/feedback` Session ID is intentionally omitted from this public repository.
 
 ## Research and official sources
 

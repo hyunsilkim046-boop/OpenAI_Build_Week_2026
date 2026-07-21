@@ -115,7 +115,7 @@ export function ResultsScreen({ result, scenario, onTryAnother }: ResultsScreenP
 
       <footer className="landing-footer content-width">
         <span>WhyRight / Education prototype</span>
-        <span>Synthetic learners only · No student data saved</span>
+        <span>Synthetic cases only · Do not enter real student information</span>
       </footer>
     </main>
   );
