@@ -1,0 +1,29 @@
+# Dependencies and build outputs
+node_modules/
+.next/
+out/
+dist/
+coverage/
+playwright-report/
+test-results/
+
+# Secrets and deployment metadata
+.env
+.env.*
+!.env.example
+.vercel/
+*.pem
+*.key
+
+# Private submission and evaluation material
+private/
+evidence/
+submission/private/
+**/SUBMISSION_IDENTITY*
+**/*주민등록*
+
+# Local artifacts
+*.log
+*.local.*
+.DS_Store
+Thumbs.db
