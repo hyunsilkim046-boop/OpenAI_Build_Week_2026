@@ -80,9 +80,9 @@ and packaged the application. The human entrant directed a separate new entry
 and autonomous implementation, set the schedule and deployment handoff,
 provided API access, and retains final submission responsibility.
 
-The project is separate from CrossReady in track, users, inputs, product loop,
-outputs, model role, design, repository, samples, video, session ID, and Git
-history.
+The project is independently scoped for the Education track, with its own
+users, inputs, product loop, outputs, model role, design, repository, samples,
+video, session ID, and Git history.
 
 ## Translation: IDEA_DECISION_KO.md
 

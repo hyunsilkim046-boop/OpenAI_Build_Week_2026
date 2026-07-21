@@ -7,8 +7,8 @@ drafted the detailed product contract below; the entrant authorized the build.
 Completion evidence belongs in the README, evaluation report, and video
 verification record.
 
-1. Submit a completely separate Education project instead of modifying or
-   rebranding the previously submitted CrossReady project.
+1. Submit a new, independently scoped Education project with its own brand,
+   repository, implementation, media, and submission evidence.
 2. Focus on teachers and tutors practicing diagnostic questions, not on a
    general-purpose student tutor.
 3. Train the specific "correct answer, wrong reason" moment.

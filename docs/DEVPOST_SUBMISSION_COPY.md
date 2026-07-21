@@ -158,11 +158,11 @@ a carefully chosen boundary case produces evidence.
 
 ## Testing
 
-The repository includes 21 automated checks across six test files for scenario integrity, score
-determinism, candidate-history validation, encrypted token confidentiality,
-tamper rejection, expiration, body-size enforcement, rate limiting, and
-request-boundary validation, plus lint, type checking, and a production build
-check.
+The repository includes 25 automated checks across seven test files for
+scenario integrity, score determinism, candidate-history validation, encrypted
+token confidentiality, tamper rejection, expiration, diagnosis readiness,
+body-size enforcement, rate limiting, and request-boundary validation, plus
+lint, type checking, and a production build check.
 
 Model behavior is evaluated separately with eight fixed probes: one targeted,
 one misaligned, one generic, and one prompt-injection probe for each scenario.
