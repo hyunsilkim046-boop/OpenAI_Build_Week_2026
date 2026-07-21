@@ -11,9 +11,10 @@ receives a deterministic score and a stronger hinge question.
 This is not another AI tutor that gives students answers. It is a practice
 arena for the human skill of seeing the reasoning hidden behind an answer.
 
-> **Status:** working MVP verified locally on July 21, 2026 KST. Production
-> deployment is intentionally deferred to the final submission window; the
-> local app, live GPT-5.6 flow, build, tests, and fixed probe suite have run.
+> **Status:** production deployment verified on July 22, 2026 KST. Both live
+> scenarios completed real GPT-5.6 turns and deterministic 100/100 scoring with
+> no browser errors. **[Open WhyRight](https://whyright-build-week-2026.vercel.app/)**
+> · **[Watch the public demo](https://youtu.be/9Qos6J0MOuI)**
 
 ## Try it locally
 
@@ -153,7 +154,7 @@ Current verified baseline:
 | --- | --- |
 | ESLint | Pass, zero warnings |
 | TypeScript strict check | Pass |
-| Vitest | 6 files, 21 tests passed |
+| Vitest | 7 files, 25 tests passed |
 | Production Next.js build | Pass |
 | `npm audit` | 0 known vulnerabilities |
 | Fixed model-behavior probes | 8/8 single-turn automatic signal checks passed; manual review still required |
@@ -212,10 +213,11 @@ submission/               upload-ready video, captions, thumbnail, and gallery
 
 ## Deployment
 
-The project is linked to the Vercel project `whyright-build-week-2026`, and
-`OPENAI_API_KEY` plus a separate `SESSION_SECRET` are prepared for Production,
-Preview, and Development. Public deployment is intentionally left for the
-deadline-morning verification window. Do not upload or expose `.env.local`.
+The project is deployed from `main` to the Vercel project
+`whyright-build-week-2026`. The stable production URL is
+**https://whyright-build-week-2026.vercel.app/**. `OPENAI_API_KEY` and a
+separate `SESSION_SECRET` are encrypted for Production, Preview, and
+Development. Do not upload or expose `.env.local`.
 
 ## OpenAI Build Week 2026
 

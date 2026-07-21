@@ -166,6 +166,19 @@ export function assertRoundActive(
   }
 }
 
+export function assertDiagnosisAllowed(
+  state: SessionState,
+  now = Date.now(),
+): void {
+  if (state.turnCount === 0 && now < state.roundEndsAt) {
+    throw new ApiError(
+      "PROBE_REQUIRED",
+      "Ask at least one successful probe before diagnosing, or wait for the 90-second round to end.",
+      409,
+    );
+  }
+}
+
 export function sealSessionState(
   state: SessionState,
   options: TokenOptions = {},

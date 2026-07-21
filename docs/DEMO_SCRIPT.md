@@ -78,12 +78,13 @@ response; do not substitute a mock reply.
 - [ ] Score narration matches the score shown in the chosen take.
 - [ ] Terminal shot uses the final verified output; no invented test counts or
       pass claims.
-- [ ] Codex's concept, build, tests, reviews, and packaging role and the
+- [x] Codex's concept, build, tests, reviews, and packaging role and the
       entrant's direction and final-submission responsibility are both clear.
-- [ ] Final export is **under 3:00**, includes audio, and has no copyrighted
+- [x] Final export is **under 3:00**, includes audio, and has no copyrighted
       third-party music or material.
-- [ ] YouTube visibility is **Public**, not Unlisted or Private, per the official
+- [x] YouTube visibility is **Public**, not Unlisted or Private, per the official
       submission rules.
-- [ ] Final links inserted where submitted: `[LIVE_DEMO_URL]`,
-      `https://github.com/hyunsilkim046-boop/OpenAI_Build_Week_2026`,
-      `[YOUTUBE_DEMO_URL]`.
+- [x] Live demo verified: `https://whyright-build-week-2026.vercel.app/`.
+- [x] Public video verified: `https://youtu.be/9Qos6J0MOuI`.
+- [x] Source repository verified:
+      `https://github.com/hyunsilkim046-boop/OpenAI_Build_Week_2026`.

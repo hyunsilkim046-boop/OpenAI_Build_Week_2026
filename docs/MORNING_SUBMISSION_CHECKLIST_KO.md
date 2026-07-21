@@ -68,68 +68,71 @@
 
 - [x] Vercel 프로젝트 연결과 Production/Preview/Development 환경변수
       준비를 완료했다.
-- [ ] 이 PC의 구형 전역 CLI는 쓰지 말고, 프로젝트 폴더에서
+- [x] 이 PC의 구형 전역 CLI는 쓰지 말고, 프로젝트 폴더에서
       `npx --yes vercel@56.4.1 env ls`로 연결과 환경변수 이름을 먼저
       확인한다. 값은 출력하거나 복사하지 않는다.
-- [ ] `main`의 최신 커밋에서 `npx --yes vercel@56.4.1 --prod`를 실행해
+- [x] `main`의 최신 커밋에서 `npx --yes vercel@56.4.1 --prod`를 실행해
       Production으로 배포한다.
-- [ ] 이 PC에서 `vercel build --prod`의 함수 폴더 symlink 단계가 Windows
+- [x] 이 PC에서 `vercel build --prod`의 함수 폴더 symlink 단계가 Windows
       `EPERM`으로 끝나더라도 앱 컴파일 실패로 오해하지 않는다. 원격
       Production 배포 로그를 기준으로 판정한다.
-- [ ] Production 환경변수 이름이 `OPENAI_API_KEY`, `SESSION_SECRET`인지
+- [x] Production 환경변수 이름이 `OPENAI_API_KEY`, `SESSION_SECRET`인지
       값 노출 없이 다시 확인한다.
-- [ ] 기본 모델이 `gpt-5.6`인지 확인한다. 필요한 경우에만
+- [x] 기본 모델이 `gpt-5.6`인지 확인한다. 필요한 경우에만
       `OPENAI_MODEL=gpt-5.6`을 명시한다.
-- [ ] 배포를 시작하고 Build 로그에 오류가 없는지 확인한다.
-- [ ] 배포 URL을 `[LIVE_DEMO_URL]` 자리에 사용할 수 있도록 기록한다.
+- [x] 배포를 시작하고 Build 로그에 오류가 없는지 확인한다.
+- [x] Live URL을 기록했다:
+      `https://whyright-build-week-2026.vercel.app/`
 
 ### 07:05–07:25 — 실제 공개 흐름 검증
 
-- [ ] 시크릿 창에서 Live URL을 열어 로그인 없이 두 시나리오가 보이는지
+- [x] 로그인 없는 새 브라우저 세션에서 Live URL을 열어 두 시나리오가 보이는지
       확인한다.
-- [ ] **The Shrinking Product**를 선택하고 실제 GPT-5.6 질문 1회, 후보
+- [x] **The Shrinking Product**를 선택하고 실제 GPT-5.6 질문 1회, 후보
       제거, 진단, 70/10/20 결과까지 완주한다.
-- [ ] **Two Julys, Two Seasons**에서도 세션 시작과 실제 응답 1회를
-      확인한다.
-- [ ] 새로고침, API 지연, 잘못된 입력 오류가 비밀정보 없이 사용자용
-      메시지로 나타나는지 확인한다.
-- [ ] 휴대폰 실기기 또는 모바일 뷰에서 시작 화면, 질문 입력, 후보
-      체크박스, 진단 버튼, 결과 화면을 확인한다.
-- [ ] 90초 타이머와 최대 3개 probe 제한이 작동하는지 확인한다.
+- [x] **Two Julys, Two Seasons**에서도 실제 GPT-5.6 질문 1회, 후보 제거,
+      진단, 70/10/20 결과까지 완주한다.
+- [x] 세 API route의 잘못된 입력이 400 JSON으로 처리되고 키·스택·로컬
+      경로를 노출하지 않는지 Production에서 확인한다.
+- [x] 390×844 모바일 뷰에서 콘텐츠, 52px 시작 버튼, 가로 overflow 없음과
+      반응형 시작 화면을 확인한다. 질문·후보·진단·결과 모바일 흐름은
+      최종 브라우저 QA에서도 통과했다.
+- [x] Production의 90초 타이머와 probe 카운터가 작동하며, 최대 3개 제한은
+      자동 테스트로 재검증했다.
 
 ### 07:25–07:40 — 완성 영상 최종 검토
 
-- [ ] 완성된 `submission/video/WhyRight_Build_Week_2026_Demo.mp4`를 처음부터
+- [x] 완성된 `submission/video/WhyRight_Build_Week_2026_Demo.mp4`를 처음부터
       끝까지 한 번 재생한다. 원본은 다시 편집하지 않는다.
-- [ ] 실제 GPT-5.6 응답, 100/100, 21 tests, 8/8 fixed probes 문구가 보이며
+- [x] 실제 GPT-5.6 응답, 100/100, 21 tests, 8/8 fixed probes 문구가 보이며
       자동 신호 점검과 별도로 수동 검토가 필요하다는 문구가 유지되는지
       확인한다.
-- [ ] 오디오가 명확하고 무단 음악·타사 저작물이 없는지 확인한다.
-- [ ] 영상 길이가 **2:59 이하**인지 플레이어에서 다시 확인한다.
-- [ ] 화면에 브라우저 계정, 이메일, 알림, 로컬 경로의 개인정보,
+- [x] 오디오가 명확하고 무단 음악·타사 저작물이 없는지 확인한다.
+- [x] 영상 길이가 **2:59 이하**인지 플레이어에서 다시 확인한다.
+- [x] 화면에 브라우저 계정, 이메일, 알림, 로컬 경로의 개인정보,
       `.env.local`, 키, 토큰이 없는지 프레임 단위로 확인한다.
 
 ### 07:40–08:00 — YouTube 공개
 
-- [ ] `submission/video/YOUTUBE_UPLOAD_COPY.md`의 제목·설명·챕터를 입력하고
+- [x] `submission/video/YOUTUBE_UPLOAD_COPY.md`의 제목·설명을 사용해
       영상을 업로드한다.
 - [ ] 가능하면 `submission/video/WhyRight_Thumbnail.png`를 썸네일로 쓴다.
 - [ ] `submission/video/WhyRight_Build_Week_2026_Demo.en.srt`를 영문 자막으로
       업로드한다.
 - [ ] 아동용 콘텐츠 여부 등 YouTube 필수 설정을 실제 콘텐츠에 맞게
       선택한다.
-- [ ] 공개 범위를 **Public**으로 설정한다. Unlisted/Private 금지.
-- [ ] 공개 URL `[YOUTUBE_DEMO_URL]`을 시크릿 창에서 열어 재생·음성·화질을
-      확인한다.
+- [x] 공개 범위를 **Public**으로 설정한다. Unlisted/Private 금지.
+- [x] 공개 URL `https://youtu.be/9Qos6J0MOuI`에서 1080p 영상과 오디오
+      스트림의 실제 8초 구간을 내려받아 전체 디코드한다.
 
 ### 08:05–08:20 — Devpost 입력
 
 - [ ] Category를 **Education**으로 선택한다.
 - [ ] `docs/DEVPOST_SUBMISSION_COPY.md`의 영어 문구를 복사하고 줄바꿈이
       깨지지 않았는지 확인한다.
-- [ ] `[LIVE_DEMO_URL]`, 실제 GitHub URL, `[YOUTUBE_DEMO_URL]`,
-      `[CODEX_FEEDBACK_SESSION_ID]`를 실제 값으로
-      교체한다. 대괄호 placeholder가 하나라도 남으면 제출하지 않는다.
+- [ ] Live·GitHub·YouTube URL은 실제 값으로 교체됐다.
+      `[CODEX_FEEDBACK_SESSION_ID]`를 실제 값으로 교체하고, 대괄호
+      placeholder가 하나라도 남으면 제출하지 않는다.
 - [ ] 공개 YouTube 링크, 코드 저장소 URL, 작동하는 Live URL을 각각 올바른
       필드에 넣는다.
 - [ ] 이미지 갤러리 필드가 있으면 `submission/screenshots/`의 3장을 순서대로
@@ -199,6 +202,4 @@
 제출 전 아래 세 문자열이 Devpost 입력란에 남아 있지 않은지
 검색한다.
 
-- `[LIVE_DEMO_URL]`
-- `[YOUTUBE_DEMO_URL]`
 - `[CODEX_FEEDBACK_SESSION_ID]`

@@ -1,7 +1,10 @@
 import { ApiError, readJsonObject, toErrorResponse } from "@/lib/errors";
 import { getServerScenario } from "@/lib/scenarios";
 import { scoreDiagnosis } from "@/lib/score";
-import { openSessionToken } from "@/lib/session-token";
+import {
+  assertDiagnosisAllowed,
+  openSessionToken,
+} from "@/lib/session-token";
 import {
   normalizeCandidateSelection,
   requireString,
@@ -18,6 +21,7 @@ export async function POST(request: Request): Promise<Response> {
       max: 16_000,
     });
     const state = openSessionToken(sessionToken);
+    assertDiagnosisAllowed(state);
     const scenario = getServerScenario(state.scenarioId);
 
     if (!scenario) {

@@ -760,7 +760,7 @@ fieldset:disabled label {
   display: flex;
   padding-block: 36px;
   justify-content: space-between;
-  color: var(--muted);
+  color: #626d64;
   font-family: "Geist Mono", monospace;
   font-size: 0.62rem;
   letter-spacing: 0.05em;

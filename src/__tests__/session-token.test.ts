@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import { ApiError } from "../lib/errors";
 import {
+  assertDiagnosisAllowed,
   assertRoundActive,
   createInitialSessionState,
   openSessionToken,
@@ -94,6 +95,42 @@ describe("encrypted session tokens", () => {
     } catch (error) {
       expect(error).toMatchObject({ code: "ROUND_EXPIRED", status: 409 });
     }
+  });
+
+  it("requires a successful probe before diagnosis while the round is active", () => {
+    const state = makeState();
+
+    expect(() => assertDiagnosisAllowed(state, NOW + 1_000)).toThrowError(
+      ApiError,
+    );
+
+    try {
+      assertDiagnosisAllowed(state, NOW + 1_000);
+    } catch (error) {
+      expect(error).toMatchObject({ code: "PROBE_REQUIRED", status: 409 });
+    }
+  });
+
+  it("allows diagnosis after a successful probe or when the round expires", () => {
+    const initialState = makeState();
+    const probedState = {
+      ...initialState,
+      transcript: [
+        ...initialState.transcript,
+        { role: "teacher" as const, text: "Why?" },
+        { role: "student" as const, text: "Because it gets bigger." },
+      ],
+      candidateHistory: [
+        ...initialState.candidateHistory,
+        [...initialState.candidateHistory[0]],
+      ],
+      turnCount: 1,
+    };
+
+    expect(() => assertDiagnosisAllowed(probedState, NOW + 1_000)).not.toThrow();
+    expect(() =>
+      assertDiagnosisAllowed(initialState, NOW + ROUND_DURATION_MS),
+    ).not.toThrow();
   });
 
   it("rejects a token with a forged round deadline", () => {

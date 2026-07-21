@@ -25,7 +25,7 @@ Verification: 21 tests pass. Eight of eight fixed probes passed automatic
 signal checks; manual review is still required. These checks cover the fixed
 synthetic cases and are not a claim of general educational validity.
 
-Live demo: [LIVE_DEMO_URL]
+Live demo: https://whyright-build-week-2026.vercel.app/
 Source: https://github.com/hyunsilkim046-boop/OpenAI_Build_Week_2026
 
 All learners and scenarios are synthetic. No real student data is collected.
@@ -44,6 +44,8 @@ Chapters:
 02:37 An inspectable practice loop
 
 #OpenAI #BuildWeek #Education #GPT56
+
+Published video: https://youtu.be/9Qos6J0MOuI
 
 ## Upload settings
 

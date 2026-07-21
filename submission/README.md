@@ -1,6 +1,7 @@
 # WhyRight submission handoff
 
-Everything that can be prepared before public deployment is organized here.
+The production app and every upload-ready submission artifact are organized
+here.
 
 ## Upload-ready files
 
@@ -18,12 +19,15 @@ Everything that can be prepared before public deployment is organized here.
 - `../docs/DEMO_SCRIPT.md` — original shot plan plus produced-cut metadata
 - `../docs/RSI_LOG.md` — three review, fix, and verification cycles
 
-## Items intentionally left for the morning
+## Morning completion status
 
-1. Deploy the already-linked Vercel project and verify both live scenarios.
-2. Upload the finished MP4 to YouTube as **Public**, add captions/thumbnail, and
-   verify playback while signed out.
-3. Replace the Live, YouTube, and Codex feedback placeholders in Devpost.
+1. **Completed:** production deployment and both live scenario flows at
+   https://whyright-build-week-2026.vercel.app/.
+2. **Completed:** Public YouTube upload and signed-out stream/decode check at
+   https://youtu.be/9Qos6J0MOuI. The supplied SRT is not yet attached as a
+   manual subtitle track.
+3. Replace the Codex feedback placeholder in Devpost; the Live and YouTube URLs
+   are already resolved in the copy file.
 4. Review required entrant declarations and perform the final Devpost submit.
 
 No API key, Vercel token, entrant identity, or Codex feedback ID belongs in

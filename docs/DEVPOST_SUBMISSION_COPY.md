@@ -190,7 +190,7 @@ synthetic training prototype.
 
 ## Links
 
-- Live demo: `[LIVE_DEMO_URL]`
+- Live demo: `https://whyright-build-week-2026.vercel.app/`
 - Source repository: `https://github.com/hyunsilkim046-boop/OpenAI_Build_Week_2026`
-- Public YouTube demo: `[YOUTUBE_DEMO_URL]`
+- Public YouTube demo: `https://youtu.be/9Qos6J0MOuI`
 - Codex `/feedback` Session ID: `[CODEX_FEEDBACK_SESSION_ID]`

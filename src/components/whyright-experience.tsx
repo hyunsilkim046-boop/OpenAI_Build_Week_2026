@@ -158,6 +158,7 @@ export function WhyRightExperience() {
       setQuestion("");
       setResult(null);
       setRoundError("");
+      setQuestionFocusRequest(0);
       setPhase("round");
       window.scrollTo({ top: 0, behavior: "auto" });
     } catch (requestError) {
@@ -202,7 +203,11 @@ export function WhyRightExperience() {
         },
       ]);
       setRemainingTurns(data.remainingTurns);
-      if (data.remainingTurns === 0) setDiagnosisMode(true);
+      if (data.remainingTurns === 0) {
+        setDiagnosisMode(true);
+      } else {
+        setQuestionFocusRequest((current) => current + 1);
+      }
     } catch (requestError) {
       setTranscript((current) => current.filter((item) => item.id !== teacherItem.id));
       setQuestion(trimmedQuestion);
@@ -260,6 +265,7 @@ export function WhyRightExperience() {
     setQuestion("");
     setDiagnosisMode(false);
     setDiagnosisId("");
+    setQuestionFocusRequest(0);
     setRoundEndsAt(0);
     setSecondsLeft(90);
     window.scrollTo({ top: 0, behavior: "smooth" });
